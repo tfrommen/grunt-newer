@@ -146,6 +146,13 @@ module.exports = function(grunt) {
       'newer', 'Run a task with only those source files that have been ' +
       'modified since the last successful run.', createTask(grunt));
 
+  grunt.registerTask(
+      'delegate', 'Delegate a task, that is let grunt-newer check src ' +
+      '(and dest) specified in the delegate config, then run the individual ' +
+      'task with its own src (and dest).', function() {
+        grunt.task.run(this.args.join(':'));
+      });
+
   var deprecated = 'DEPRECATED TASK.  Use the "newer" task instead';
   grunt.registerTask(
       'any-newer', deprecated, function() {
